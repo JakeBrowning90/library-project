@@ -1,4 +1,5 @@
 const container = document.querySelector('#container');
+const sidebar = document.querySelector('#sidebar');
 
 //Create library array and Book constructor
 let library = [];
@@ -23,6 +24,18 @@ const stayingAlive = new Book("Staying Alive in Toxic Times", "Dr. Jenny Goodman
 addBookToLibrary(theHobbit);
 addBookToLibrary(stayingAlive);
 printLibrary()
+
+//Call new book form
+const formButton = document.getElementById("callForm")
+formButton.addEventListener('click', function(){
+    while (sidebar.firstChild) {
+        sidebar.removeChild(sidebar.lastChild);
+      }
+    const newForm = document.createElement('form');
+    newForm.classList.add('form');
+    newForm.textContent = "The form will go here."
+    sidebar.appendChild(newForm);
+});
 
 //Create new book with form, add to library, refresh list
 const bookForm = document.querySelector('#bookForm');
