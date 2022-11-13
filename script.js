@@ -1,7 +1,8 @@
 const container = document.querySelector('#container');
 const sidebar = document.querySelector('#sidebar');
-const callFormButton = document.getElementById("callForm")
+const callFormButton = document.getElementById('callForm');
 const bookForm = document.querySelector('#bookForm');
+const deleteButton = document.querySelectorAll('.deleteButton');
 
 //Create library array and Book constructor
 let library = [];
@@ -73,7 +74,7 @@ callFormButton.addEventListener('click', function(){
     bookForm.appendChild(submitButton);
 });
 
-//Get new book values from form, add to library, refresh list
+//Get new book values from form, then add to library and print library
 bookForm.addEventListener('submit', (event) => {
     event.preventDefault()
     let readStatus;
@@ -87,18 +88,35 @@ bookForm.addEventListener('submit', (event) => {
     printLibrary();
   });
 
-//Add library books to DOM
+//Add library books to DOM as cards
 function printLibrary() {
     refreshPage()
+    let libraryPosition = 0;
     for (entry in library) {
         let card = document.createElement('div');
         card.classList.add('card');
         card.textContent = library[entry].info();
+        let deleteButton = document.createElement("button");
+        deleteButton.classList.add('deleteButton');
+        deleteButton.textContent = "Remove";
+        deleteButton.setAttribute("data-libraryIndex", libraryPosition);
+        deleteButton.addEventListener("click", function () {
+            removeBook(this.getAttribute('data-libraryIndex'))
+        });
+        card.appendChild(deleteButton);
         container.appendChild(card);
+        libraryPosition++;
     }
 }
 
-//Refresh list and remove form
+//Remove Book from library, disappears from DOM on next refresh and print
+function removeBook(libraryPosition) {
+    library.splice(libraryPosition, libraryPosition + 1);
+    refreshPage();
+    printLibrary();
+}
+
+//Refresh list and hide form
 function refreshPage() {
     while (container.firstChild) {
         container.removeChild(container.lastChild);
