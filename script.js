@@ -1,5 +1,8 @@
 const container = document.querySelector('#container');
 const sidebar = document.querySelector('#sidebar');
+const callFormButton = document.getElementById("callForm")
+
+const bookForm = document.querySelector('#bookForm');
 
 //Create library array and Book constructor
 let library = [];
@@ -26,29 +29,59 @@ addBookToLibrary(stayingAlive);
 printLibrary()
 
 //Call new book form
-const formButton = document.getElementById("callForm")
-formButton.addEventListener('click', function(){
-    while (sidebar.firstChild) {
-        sidebar.removeChild(sidebar.lastChild);
-      }
-    const newForm = document.createElement('form');
-    newForm.classList.add('form');
-    newForm.textContent = "The form will go here."
-    sidebar.appendChild(newForm);
+callFormButton.addEventListener('click', function(){
+    callFormButton.remove();
+    var titleLabel = document.createElement("label");
+    titleLabel.setAttribute("for", "title");
+    titleLabel.textContent = "Title:";
+    var titleField = document.createElement("input");
+    titleField.setAttribute("required", "");
+    titleField.setAttribute("id", "title");
+    titleField.setAttribute("name", "title");
+    var authorLabel = document.createElement("label");
+    authorLabel.textContent = "Author:";
+    var authorField = document.createElement("input");
+    authorField.setAttribute("required", "");
+    authorField.setAttribute("id", "author");
+    authorField.setAttribute("name", "author");
+    var pagesLabel = document.createElement("label");
+    pagesLabel.textContent = "Page count:";
+    var pagesField = document.createElement("input");
+    pagesField.setAttribute("required", "");
+    pagesField.setAttribute("id", "pages");
+    pagesField.setAttribute("name", "pages");
+    var readLabel = document.createElement("label");
+    readLabel.textContent = "Read?:";
+    var readField = document.createElement("input");
+    readField.setAttribute("required", "");
+    readField.setAttribute("id", "finished");
+    readField.setAttribute("name", "finished");
+    var submitButton = document.createElement("input");
+    submitButton.setAttribute("type", "submit");
+    submitButton.setAttribute("id", "addBook");
+    bookForm.appendChild(titleLabel);
+    bookForm.appendChild(titleField);
+    bookForm.appendChild(authorLabel);
+    bookForm.appendChild(authorField);
+    bookForm.appendChild(pagesLabel);
+    bookForm.appendChild(pagesField);
+    bookForm.appendChild(readLabel);
+    bookForm.appendChild(readField);
+    bookForm.appendChild(submitButton);
 });
 
 //Create new book with form, add to library, refresh list
-const bookForm = document.querySelector('#bookForm');
 bookForm.addEventListener('submit', (event) => {
     event.preventDefault()
     var newBook = new Book(title.value, author.value, pages.value, finished.value);
     addBookToLibrary(newBook);
+    console.log(library);
     printLibrary();
   });
 
 //Add library books to DOM
 function printLibrary() {
-    refreshList()
+    refreshPage()
     for (entry in library) {
         let card = document.createElement('div');
         card.classList.add('card');
@@ -57,11 +90,14 @@ function printLibrary() {
     }
 }
 
-//Refresh list
-function refreshList() {
-    document.getElementById("bookForm").reset();
+//Refresh list and remove form
+function refreshPage() {
     while (container.firstChild) {
         container.removeChild(container.lastChild);
       }
+    while (bookForm.firstChild) {
+        bookForm.removeChild(bookForm.lastChild);
+      }
+    sidebar.appendChild(callFormButton);
 }
 
