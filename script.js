@@ -15,6 +15,16 @@ function Book (title, author, pages, readStatus) {
 Book.prototype.info = function() {
     return(this.title + " by " + this.author + ", " + this.pages + " pages, " + this.readStatus)
 } 
+Book.prototype.changeReadStatus = function() {
+    if (this.readStatus == true) {
+        this.readStatus = false
+    }
+    else if (this.readStatus == false) {
+        this.readStatus = true
+    }
+    refreshPage();
+    printLibrary();
+} 
 
 //Add Book object to Library array
 function addBookToLibrary(Book) {
@@ -92,10 +102,18 @@ bookForm.addEventListener('submit', (event) => {
 function printLibrary() {
     refreshPage()
     let libraryPosition = 0;
-    for (entry in library) {
+    for (const entry in library) {
         let card = document.createElement('div');
         card.classList.add('card');
         card.textContent = library[entry].info();
+
+        let readToggle = document.createElement('button');
+        readToggle.classList.add('readToggle');
+        readToggle.textContent = "Update read / unread";
+        readToggle.addEventListener("click", function () {
+            library[entry].changeReadStatus();
+        });
+
         let deleteButton = document.createElement("button");
         deleteButton.classList.add('deleteButton');
         deleteButton.textContent = "Remove";
@@ -103,10 +121,13 @@ function printLibrary() {
         deleteButton.addEventListener("click", function () {
             removeBook(this.getAttribute('data-libraryIndex'))
         });
+
+        card.appendChild(readToggle);
         card.appendChild(deleteButton);
         container.appendChild(card);
         libraryPosition++;
     }
+    console.log(library);
 }
 
 //Remove Book from library, disappears from DOM on next refresh and print
