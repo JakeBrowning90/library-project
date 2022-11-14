@@ -34,6 +34,7 @@ function addBookToLibrary(Book) {
 //Call new book form
 callFormButton.addEventListener('click', function(){
     callFormButton.remove();
+    var linebreak = document.createElement("br");
     var titleLabel = document.createElement("label");
     titleLabel.setAttribute("for", "title");
     titleLabel.textContent = "Title:";
@@ -71,17 +72,35 @@ callFormButton.addEventListener('click', function(){
     var submitButton = document.createElement("input");
     submitButton.setAttribute("type", "submit");
     submitButton.setAttribute("id", "addBook");
+    var cancelButton = document.createElement("input");
+    cancelButton.setAttribute("type", "button");
+    cancelButton.setAttribute("id", "cancelButton");
+    cancelButton.setAttribute("value", "Cancel");
+    cancelButton.addEventListener("click", function () {
+        refreshPage();
+        printLibrary();
+    });
     bookForm.appendChild(titleLabel);
+    bookForm.appendChild(linebreak);
     bookForm.appendChild(titleField);
+    bookForm.appendChild(linebreak);
     bookForm.appendChild(authorLabel);
+    bookForm.appendChild(linebreak);
     bookForm.appendChild(authorField);
+    bookForm.appendChild(linebreak);
     bookForm.appendChild(pagesLabel);
+    bookForm.appendChild(linebreak);
     bookForm.appendChild(pagesField);
+    bookForm.appendChild(linebreak);
     bookForm.appendChild(readLabel);
     bookForm.appendChild(readRadio);
+    bookForm.appendChild(linebreak);
     bookForm.appendChild(unreadLabel);
     bookForm.appendChild(unreadRadio);
+    bookForm.appendChild(linebreak);
     bookForm.appendChild(submitButton);
+    bookForm.appendChild(cancelButton);
+
 });
 
 //Get new book values from form, then add to library and print library
@@ -127,7 +146,6 @@ function printLibrary() {
         container.appendChild(card);
         libraryPosition++;
     }
-    console.log(library);
 }
 
 //Remove Book from library, disappears from DOM on next refresh and print

@@ -7,17 +7,35 @@ html, body {
     color: white;
 }
 
+h1 {
+    font-size: 2em;
+}
+
 .header, .footer {
     grid-column: 1 / -1;
     background-color: #3b5998;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .sidebar {
-    background-color:#8b9dc3
+    background-color:#6a86c4;
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-items: flex-start;
+}
+
+.bookForm {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .container {
     background-color: #f0f0f0;
+    padding: 5px;
 }
 
 .card {
@@ -25,4 +43,8 @@ html, body {
     border-style: solid;
     border-width: 1px;
     border-color: black;
+    padding: 2px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+
 }
