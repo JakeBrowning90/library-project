@@ -12,9 +12,11 @@ function Book (title, author, pages, readStatus) {
     this.pages = pages
     this.readStatus = readStatus
 }
+//Holdover from practice build, example of a function declared in the Object prototype
 Book.prototype.info = function() {
     return(this.title + " by " + this.author + ", " + this.pages + " pages, " + this.readStatus)
 } 
+//Function to toggle readStatus and show change on screen
 Book.prototype.changeReadStatus = function() {
     if (this.readStatus == true) {
         this.readStatus = false
@@ -31,10 +33,9 @@ function addBookToLibrary(Book) {
     library.push(Book)
 }
 
-//Call new book form
+//Call new book form, build in sidebar
 callFormButton.addEventListener('click', function(){
     callFormButton.remove();
-    const linebreak = document.createElement("br");
     const titleLabel = document.createElement("label");
     titleLabel.setAttribute("for", "title");
     titleLabel.textContent = "Title:";
@@ -54,6 +55,7 @@ callFormButton.addEventListener('click', function(){
     pagesField.setAttribute("required", "");
     pagesField.setAttribute("id", "pages");
     pagesField.setAttribute("name", "pages");
+    const radioRow1 = document.createElement('div');
     const readLabel = document.createElement("label");
     readLabel.textContent = "Read:";
     readLabel.setAttribute("for", "readTrue")
@@ -61,7 +63,7 @@ callFormButton.addEventListener('click', function(){
     readRadio.setAttribute("type", "radio");
     readRadio.setAttribute("id", "readTrue");
     readRadio.setAttribute("name", "readStatus");
-    readRadio.setAttribute("checked", "");
+    const radioRow2 = document.createElement('div');
     const unreadLabel = document.createElement("label");
     unreadLabel.textContent = "Unread:";
     unreadLabel.setAttribute("for", "readFalse")
@@ -69,6 +71,8 @@ callFormButton.addEventListener('click', function(){
     unreadRadio.setAttribute("type", "radio");
     unreadRadio.setAttribute("id", "readFalse");
     unreadRadio.setAttribute("name", "readStatus");
+    unreadRadio.setAttribute("checked", "");
+
     const submitButton = document.createElement("input");
     submitButton.setAttribute("type", "submit");
     submitButton.setAttribute("id", "addBook");
@@ -81,23 +85,17 @@ callFormButton.addEventListener('click', function(){
         printLibrary();
     });
     bookForm.appendChild(titleLabel);
-    bookForm.appendChild(linebreak);
     bookForm.appendChild(titleField);
-    bookForm.appendChild(linebreak);
     bookForm.appendChild(authorLabel);
-    bookForm.appendChild(linebreak);
     bookForm.appendChild(authorField);
-    bookForm.appendChild(linebreak);
     bookForm.appendChild(pagesLabel);
-    bookForm.appendChild(linebreak);
     bookForm.appendChild(pagesField);
-    bookForm.appendChild(linebreak);
-    bookForm.appendChild(readLabel);
-    bookForm.appendChild(readRadio);
-    bookForm.appendChild(linebreak);
-    bookForm.appendChild(unreadLabel);
-    bookForm.appendChild(unreadRadio);
-    bookForm.appendChild(linebreak);
+    bookForm.appendChild(radioRow1);
+    radioRow1.appendChild(unreadLabel);
+    radioRow1.appendChild(unreadRadio);
+    bookForm.appendChild(radioRow2);
+    radioRow2.appendChild(readLabel);
+    radioRow2.appendChild(readRadio);
     bookForm.appendChild(submitButton);
     bookForm.appendChild(cancelButton);
 });

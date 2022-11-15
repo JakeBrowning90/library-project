@@ -3,7 +3,7 @@ html, body {
     width: 100vw;
     display: grid;
     grid-template-columns: 1fr 2fr;
-    grid-template-rows: 50px 1fr 50px;
+    grid-template-rows: 70px 1fr 30px;
     color: white;
 }
 
@@ -20,7 +20,8 @@ h1 {
 }
 
 .sidebar {
-    background-color:#6a86c4;
+    background-color: #dfe3ee;
+    color: black;
     padding: 5px;
     display: flex;
     flex-direction: column;
@@ -28,19 +29,21 @@ h1 {
 }
 
 .bookForm {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    display: grid;
+    grid-template-rows: auto;
 }
 
 .container {
-    background-color: #f0f0f0;
-    padding: 5px;
-    gap: 5px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    gap: 10px;
 }
 
 .card {
-    background-color: #006699;
+    background-color: #3b5998;
+    box-shadow: 4px 4px 1px grey;
     border-style: solid;
     border-width: 1px;
     border-color: black;
