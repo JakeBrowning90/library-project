@@ -1,1 +1,3 @@
 # library
+
+This project was the most challenging one I've worked on so far. I needed to be particularly careful regarding how much of the page was created by JavaScript DOM manipulation, and so I needed to carefully organize the functions responsible for making the form and book cards appear on screen. I also had issues with using the "this" reference to have the buttons on each card correctly control the properties of their corresponding Book object. Finally, I ran into an issue related to variable declaration (using var, let, const, or not declaring at all). The importance of this was never really made clear before, and I've only begun understanding it by encountering errors caused by incorrect declarations.
