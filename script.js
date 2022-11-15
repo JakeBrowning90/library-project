@@ -123,14 +123,21 @@ function printLibrary() {
     for (const entry in library) {
         let card = document.createElement('div');
         card.classList.add('card');
-        card.textContent = library[entry].info();
+        
+        let titleRow = document.createElement('div');
+        titleRow.classList.add('titleRow');
+        titleRow.textContent = library[entry].title;
+        let bookInfoRow = document.createElement('div');
+        bookInfoRow.textContent = library[entry].author + ", "+ library[entry].pages + " pages";
 
         let readToggle = document.createElement('button');
         readToggle.classList.add('readToggle');
         if (library[entry].readStatus == true) {
             readToggle.textContent = "Finished";
+            readToggle.classList.add('finished');
         } else if (library[entry].readStatus == false) {
             readToggle.textContent = "Unfinished";
+            readToggle.classList.add('unfinished');
         }
 
         readToggle.addEventListener("click", function () {
@@ -144,7 +151,8 @@ function printLibrary() {
         deleteButton.addEventListener("click", function () {
             removeBook(this.getAttribute('data-libraryIndex'))
         });
-
+        card.appendChild(titleRow);
+        card.appendChild(bookInfoRow);
         card.appendChild(readToggle);
         card.appendChild(deleteButton);
         container.appendChild(card);
@@ -171,8 +179,10 @@ function refreshPage() {
 }
 
 //Manually-created sample books
-const theHobbit = new Book("The Hobbit", "J.R.R. Tokien", 295, true);
+const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, true);
 const stayingAlive = new Book("Staying Alive in Toxic Times", "Dr. Jenny Goodman", 377, false);
+const danceWithDragons = new Book("A Dance with Dragons, Part 2: After the Feast", "George R. R. Martin", 560, false)
 addBookToLibrary(theHobbit);
 addBookToLibrary(stayingAlive);
+addBookToLibrary(danceWithDragons);
 printLibrary()
