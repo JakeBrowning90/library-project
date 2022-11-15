@@ -75,6 +75,14 @@ button, input {
     gap: 2px;
 }
 
+.radioRow {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: repeat(2, 1fr);
+    row-gap: 5px;
+    justify-items: start;
+}
+
 .formButton {
     padding: 10px;
     width: 50%;

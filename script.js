@@ -36,7 +36,7 @@ function addBookToLibrary(Book) {
 //Call new book form, build in sidebar
 callFormButton.addEventListener('click', function(){
     callFormButton.remove();
-    
+    //Create divs to allow proper grid display of form elements
     const titleDiv = document.createElement("div");
     titleDiv.classList.add('formTextInput');
     const titleLabel = document.createElement("label");
@@ -65,7 +65,8 @@ callFormButton.addEventListener('click', function(){
     pagesField.setAttribute("id", "pages");
     pagesField.setAttribute("name", "pages");
 
-    const radioRow1 = document.createElement('div');
+    const radioRow = document.createElement('div');
+    radioRow.classList.add('radioRow');
     const readLabel = document.createElement("label");
     readLabel.textContent = "Read:";
     readLabel.setAttribute("for", "readTrue")
@@ -74,7 +75,7 @@ callFormButton.addEventListener('click', function(){
     readRadio.setAttribute("id", "readTrue");
     readRadio.setAttribute("name", "readStatus");
 
-    const radioRow2 = document.createElement('div');
+    //const radioRow2 = document.createElement('div');
     const unreadLabel = document.createElement("label");
     unreadLabel.textContent = "Unread:";
     unreadLabel.setAttribute("for", "readFalse")
@@ -110,13 +111,14 @@ callFormButton.addEventListener('click', function(){
     pagesDiv.appendChild(pagesLabel);
     pagesDiv.appendChild(pagesField);
 
-    bookForm.appendChild(radioRow1);
-    radioRow1.appendChild(unreadLabel);
-    radioRow1.appendChild(unreadRadio);
+    //bookForm.appendChild(radioRow1);
+    bookForm.appendChild(radioRow);
+    radioRow.appendChild(unreadLabel);
+    radioRow.appendChild(unreadRadio);
 
-    bookForm.appendChild(radioRow2);
-    radioRow2.appendChild(readLabel);
-    radioRow2.appendChild(readRadio);
+    //bookForm.appendChild(radioRow2);
+    radioRow.appendChild(readLabel);
+    radioRow.appendChild(readRadio);
 
     bookForm.appendChild(submitButton);
 
