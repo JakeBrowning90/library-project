@@ -36,6 +36,9 @@ function addBookToLibrary(Book) {
 //Call new book form, build in sidebar
 callFormButton.addEventListener('click', function(){
     callFormButton.remove();
+    
+    const titleDiv = document.createElement("div");
+    titleDiv.classList.add('formTextInput');
     const titleLabel = document.createElement("label");
     titleLabel.setAttribute("for", "title");
     titleLabel.textContent = "Title:";
@@ -43,18 +46,25 @@ callFormButton.addEventListener('click', function(){
     titleField.setAttribute("required", "");
     titleField.setAttribute("id", "title");
     titleField.setAttribute("name", "title");
+
+    const authorDiv = document.createElement("div");
+    authorDiv.classList.add('formTextInput');
     const authorLabel = document.createElement("label");
     authorLabel.textContent = "Author:";
     const authorField = document.createElement("input");
     authorField.setAttribute("required", "");
     authorField.setAttribute("id", "author");
     authorField.setAttribute("name", "author");
+
+    const pagesDiv = document.createElement("div");
+    pagesDiv.classList.add('formTextInput');
     const pagesLabel = document.createElement("label");
     pagesLabel.textContent = "Page count:";
     const pagesField = document.createElement("input");
     pagesField.setAttribute("required", "");
     pagesField.setAttribute("id", "pages");
     pagesField.setAttribute("name", "pages");
+
     const radioRow1 = document.createElement('div');
     const readLabel = document.createElement("label");
     readLabel.textContent = "Read:";
@@ -63,6 +73,7 @@ callFormButton.addEventListener('click', function(){
     readRadio.setAttribute("type", "radio");
     readRadio.setAttribute("id", "readTrue");
     readRadio.setAttribute("name", "readStatus");
+
     const radioRow2 = document.createElement('div');
     const unreadLabel = document.createElement("label");
     unreadLabel.textContent = "Unread:";
@@ -76,27 +87,39 @@ callFormButton.addEventListener('click', function(){
     const submitButton = document.createElement("input");
     submitButton.setAttribute("type", "submit");
     submitButton.setAttribute("id", "addBook");
+    submitButton.classList.add('formButton');
+
     const cancelButton = document.createElement("input");
     cancelButton.setAttribute("type", "button");
     cancelButton.setAttribute("id", "cancelButton");
     cancelButton.setAttribute("value", "Cancel");
+    cancelButton.classList.add('formButton');
     cancelButton.addEventListener("click", function () {
         refreshPage();
         printLibrary();
     });
-    bookForm.appendChild(titleLabel);
-    bookForm.appendChild(titleField);
-    bookForm.appendChild(authorLabel);
-    bookForm.appendChild(authorField);
-    bookForm.appendChild(pagesLabel);
-    bookForm.appendChild(pagesField);
+    bookForm.appendChild(titleDiv);
+    titleDiv.appendChild(titleLabel);
+    titleDiv.appendChild(titleField);
+
+    bookForm.appendChild(authorDiv);
+    authorDiv.appendChild(authorLabel);
+    authorDiv.appendChild(authorField);
+
+    bookForm.appendChild(pagesDiv);
+    pagesDiv.appendChild(pagesLabel);
+    pagesDiv.appendChild(pagesField);
+
     bookForm.appendChild(radioRow1);
     radioRow1.appendChild(unreadLabel);
     radioRow1.appendChild(unreadRadio);
+
     bookForm.appendChild(radioRow2);
     radioRow2.appendChild(readLabel);
     radioRow2.appendChild(readRadio);
+
     bookForm.appendChild(submitButton);
+
     bookForm.appendChild(cancelButton);
 });
 
