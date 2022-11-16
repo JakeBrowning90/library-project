@@ -62,6 +62,7 @@ callFormButton.addEventListener('click', function(){
     pagesLabel.textContent = "Page count:";
     const pagesField = document.createElement("input");
     pagesField.setAttribute("required", "");
+    pagesField.setAttribute("type", "number");
     pagesField.setAttribute("id", "pages");
     pagesField.setAttribute("name", "pages");
 
