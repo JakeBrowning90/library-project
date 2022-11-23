@@ -6,12 +6,22 @@ const deleteButton = document.querySelectorAll('.deleteButton');
 
 //Create library array and Book constructor
 let library = [];
-function Book (title, author, pages, readStatus) {
-    this.title = title
-    this.author = author
-    this.pages = pages
-    this.readStatus = readStatus
+// function Book (title, author, pages, readStatus) {
+//     this.title = title
+//     this.author = author
+//     this.pages = pages
+//     this.readStatus = readStatus
+// }
+
+class Book {
+    constructor(title, author, pages, readStatus) {
+        this.title = title;
+        this.author = author
+        this.pages = pages
+        this.readStatus = readStatus
+    }
 }
+
 //Holdover from practice build, example of a function declared in the Object prototype
 Book.prototype.info = function() {
     return(this.title + " by " + this.author + ", " + this.pages + " pages, " + this.readStatus)
@@ -203,9 +213,9 @@ function refreshPage() {
 }
 
 //Manually-created sample books
-const theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, true);
-const stayingAlive = new Book("Staying Alive in Toxic Times", "Dr. Jenny Goodman", 377, false);
-const danceWithDragons = new Book("A Dance with Dragons, Part 2: After the Feast", "George R. R. Martin", 560, false)
+let theHobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, true);
+let stayingAlive = new Book("Staying Alive in Toxic Times", "Dr. Jenny Goodman", 377, false);
+let danceWithDragons = new Book("A Dance with Dragons, Part 2: After the Feast", "George R. R. Martin", 560, false)
 addBookToLibrary(theHobbit);
 addBookToLibrary(stayingAlive);
 addBookToLibrary(danceWithDragons);
